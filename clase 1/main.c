@@ -21,6 +21,7 @@ int main()
     printf("ingrese una letra: ");
     fflush(stdin);
     scanf("%c", &letra);
+    //letra= getch();
     resultado=numero+numero2;
 
     printf("el numero es: %d\n", numero);
