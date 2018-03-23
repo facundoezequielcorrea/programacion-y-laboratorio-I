@@ -21,8 +21,7 @@ int main()
     int cantneg=0;
     int porcenpos;
     int porcenneg;
-    int acumpos=0;
-    int acumneg=0;
+    int contnumero=0;
     int numeromax=-9999;
     int numeromin=9999;
     int numeromaxpar;
@@ -30,13 +29,14 @@ int main()
 
     while (masdatos!='n')
     {
-        printf("ingrese un numero");
+        printf("ingrese un numero: ");
         scanf("%d", &numero);
         while (numero==0)
         {
-            printf("ingrese un numero nuevamente");
+            printf("ingrese un numero nuevamente: ");
             scanf("%d", &numero);
         }
+        contnumero=contnumero+1;
         if (numero%2==0)
         {
             cantpar=cantpar+1;
@@ -48,12 +48,10 @@ int main()
         if (numero>0)
         {
             cantpos=cantpos+1;
-            acumpos=acumpos+numero;
         }
         if (numero<0)
         {
             cantneg=cantneg+1;
-            acumneg=acumneg+numero;
         }
         if (numero>numeromax)
         {
@@ -63,11 +61,11 @@ int main()
         {
             numeromin=numero;
         }
-        if (numero>0 && numero%2==0)
+        if (numero>0 && numero%2==0 && cantpar!=0)
         {
             numeromaxpar=numero;
         }
-        if (numero>125 && numero>236)
+        if (numero>125 && numero<236)
         {
             cantnumentre=cantnumentre+1;
         }
@@ -75,11 +73,10 @@ int main()
         fflush(stdin);
         scanf("%c", &masdatos);
     }
-
     if (cantneg!=0 || cantpos!=0)
     {
-        porcenpos=acumpos/cantpos;
-        porcenneg=acumneg/cantneg;
+        porcenpos=(cantpos*100)/contnumero;
+        porcenneg=(cantneg*100)/contnumero;
     }
     printf("la cantidad de numeros pares son: %d", cantpar);
     printf("\nla cantidad de numeros impares son: %d", cantimpar);
@@ -91,7 +88,10 @@ int main()
     printf("\nel numero maximo es: %d", numeromax);
     printf("\nel numero minimo es: %d", numeromin);
     printf("\nel numero maximo par es: %d", numeromaxpar);
-    printf("\nla cantidad de numeros entre 125 y 236 es: %d", cantnumentre);
+    if (cantpar!=0)
+    {
+        printf("\nla cantidad de numeros entre 125 y 236 es: %d", cantnumentre);
+    }
     //printf("Hello world!\n");
     return 0;
 }
