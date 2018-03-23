@@ -19,11 +19,12 @@ int main()
     int cantimpar=0;
     int cantpos=0;
     int cantneg=0;
-    int porcenpos;
-    int porcenneg;
+    float porcenpos;
+    float porcenneg;
     int contnumero=0;
-    int numeromax=-9999;
-    int numeromin=9999;
+    int numeromax;
+    int numeromin;
+    int flag=0;
     int numeromaxpar;
     int cantnumentre=0;
 
@@ -39,9 +40,13 @@ int main()
         contnumero=contnumero+1;
         if (numero%2==0)
         {
-            cantpar=cantpar+1;
+            if(cantpar==0 || numero>numeromaxpar)
+            {
+                cantpar=cantpar+1;
+                numeromaxpar=numero;
+            }
         }
-        if (numero%2!=0)
+        else
         {
             cantimpar=cantimpar+1;
         }
@@ -49,21 +54,18 @@ int main()
         {
             cantpos=cantpos+1;
         }
-        if (numero<0)
+        else
         {
             cantneg=cantneg+1;
         }
-        if (numero>numeromax)
+        if (flag==0 || numero>numeromax)
         {
             numeromax=numero;
         }
-        if (numero<numeromin)
+        if (flag==0 || numero<numeromin)
         {
             numeromin=numero;
-        }
-        if (numero>0 && numero%2==0 && cantpar!=0)
-        {
-            numeromaxpar=numero;
+            flag=1;
         }
         if (numero>125 && numero<236)
         {
@@ -75,15 +77,15 @@ int main()
     }
     if (cantneg!=0 || cantpos!=0)
     {
-        porcenpos=(cantpos*100)/contnumero;
-        porcenneg=(cantneg*100)/contnumero;
+        porcenpos=(float)(cantpos*100)/contnumero;
+        porcenneg=100-porcenpos;
     }
     printf("la cantidad de numeros pares son: %d", cantpar);
     printf("\nla cantidad de numeros impares son: %d", cantimpar);
     if (cantneg!=0 || cantpos!=0)
     {
-        printf("\nel porcentaje de positivos es: %d", porcenpos);
-        printf("\nel porcentaje de negativos es: %d", porcenneg);
+        printf("\nel porcentaje de positivos es: %.2f", porcenpos);
+        printf("\nel porcentaje de negativos es: %.2f", porcenneg);
     }
     printf("\nel numero maximo es: %d", numeromax);
     printf("\nel numero minimo es: %d", numeromin);
@@ -92,6 +94,5 @@ int main()
     {
         printf("\nla cantidad de numeros entre 125 y 236 es: %d", cantnumentre);
     }
-    //printf("Hello world!\n");
     return 0;
 }
