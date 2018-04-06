@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1523018192 source:d:\clase4 facu\sumas\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1523018188 d:\clase4 facu\sumas\funciones.h
+
