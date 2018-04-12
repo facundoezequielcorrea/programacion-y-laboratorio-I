@@ -7,7 +7,7 @@ float sumar (float, float);
 float restar (float, float);
 float multiplicar (float, float);
 float dividir (float, float);
-int factorial (float);
+float factorial (float);
 float calculartodaslasoperaciones (float, float);
 
 int main()
@@ -24,8 +24,8 @@ int main()
 
     while(seguir=='s')
     {
-        printf("1- Ingresar 1er operando (A=x)\n");
-        printf("2- Ingresar 2do operando (B=y)\n");
+        printf("1- Ingresar 1er operando (A=%.2f)\n",numero1);
+        printf("2- Ingresar 2do operando (B=%.2f)\n",numero2);
         printf("3- Calcular la suma (A+B)\n");
         printf("4- Calcular la resta (A-B)\n");
         printf("5- Calcular la division (A/B)\n");
@@ -68,9 +68,13 @@ int main()
                 break;
             case 7:
                 factoria=factorial (numero1);
-                printf("el factorial es: %d", factoria);
+                printf("el factorial es: %f\n", factoria);
                 break;
             case 8:
+                suma=sumar(numero1, numero2);
+                resta=restar(numero1, numero2);
+                division=dividir(numero1, numero2);
+                producto=multiplicar(numero1, numero2);
                 printf("el resultado de la suma es: %.2f\n", suma);
                 printf("el resultado de la resta es: %.2f\n", resta);
                 printf("el resultado de la division es: %.2f\n", division);
@@ -92,7 +96,7 @@ float pedirflotante (char mensaje[])
     float numero;
 
     printf("ingrese %s", mensaje);
-    scanf("%.2f", &numero);
+    scanf("%f", &numero);
 
     return numero;
 }
@@ -137,14 +141,15 @@ float dividir (float numero1, float numero2)
     return division;
 }
 
-int factorial (float numero1)
+float factorial (float numero1)
 {
     int i;
     int resp=1;
-    if (numero1<0)
+    if (numero1<=0)
     {
         printf("Error");
-    }else
+    }
+    else
     {
         for (i=numero1; i>=1; i--)
         {
